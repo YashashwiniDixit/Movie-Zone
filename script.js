@@ -1,15 +1,16 @@
-const API_KEY = "api_key=bb1bd030692b6ce6e41149de7c54cb5c";
-const BASE_URL = "https://api.themoviedb.org/3";
-const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
-const searchURL = BASE_URL + "/search/movie?" + API_KEY;
+const API_KEY = "api_key=bb1bd030692b6ce6e41149de7c54cb5c"; //api key from tmdb
+const BASE_URL = "https://api.themoviedb.org/3"; //base url common for all urls
+const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY; //our api url
+const IMG_URL = "https://image.tmdb.org/t/p/w500"; //image base url
+const searchURL = BASE_URL + "/search/movie?" + API_KEY; //search url
 
-const main = document.getElementById("main");
-const form = document.getElementById("form");
-const search = document.getElementById("search");
+const main = document.getElementById("main"); //getting main tag elements from html
+const form = document.getElementById("form"); //getting form tag elements from html
+const search = document.getElementById("search");//getting search tag elements from html
 
-getMovies(API_URL);
+getMovies(API_URL); //calling the get movies function
 
+//function to get movies from api
 function getMovies(url) {
   fetch(url)
     .then((res) => res.json())
@@ -19,6 +20,7 @@ function getMovies(url) {
     });
 }
 
+//function to show movies from results
 function showMovies(data) {
   main.innerHTML = "";
 
@@ -43,6 +45,7 @@ function showMovies(data) {
   });
 }
 
+//fucntion to get colour for ratings
 function getColor(vote) {
   if (vote >= 8) {
     return "green";
@@ -53,6 +56,7 @@ function getColor(vote) {
   }
 }
 
+//for searching a movie
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
